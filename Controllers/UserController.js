@@ -1,6 +1,6 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 // get a user
 
 export const getUser = async (req, res) => {
@@ -33,7 +33,14 @@ export const updateUser = async (req, res) => {
       const user = await UserModel.findByIdAndUpdate(id, req.body, {
         new: true,
       });
-      res.status(200).json(user);
+
+      const token = jwt.sign(
+        { username: user.username, id: user._id },
+        process.env.SECRET_JWT,
+        { expiresIn: "6h" }
+      );
+
+      res.status(200).json(user, token);
     } catch (error) {
       res.status(500).json(error);
     }

@@ -7,6 +7,7 @@ import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import ChatRoute from "./Routes/ChatRoute.js";
 import MessageRoute from "./Routes/MessageRoute.js";
+import FindUserRoute from "./Routes/FindUserRoute.js";
 
 // routes
 
@@ -34,3 +35,4 @@ app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/chat", ChatRoute);
 app.use("/message", MessageRoute);
+app.use("/find", FindUserRoute);
